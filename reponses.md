@@ -16,3 +16,28 @@ une flèche ou une valeur. Un ListTile doit avoir une largeur contrainte car il
 est construit avec des Row internes qui ont besoin d'une largeur finie pour
 répartir leurs éléments : dans un parent à largeur infinie (ex. Row sans
 Expanded), il y a une erreur de layout.
+
+
+## Partie 02
+
+**Q2.1.** Message : "RenderFlex overflowed by ... pixels on the bottom"
+(bande jaune et noire). Une Column ne défile pas : si ses enfants dépassent
+la hauteur de l'écran, ils débordent.
+
+**Q2.3.** ListTile.divideTiles ajoute automatiquement les séparateurs entre
+les éléments, avec le style du thème. Moins de code, pas de Divider à
+répéter ni à oublier.
+
+**Q2.5.** ListView(children: ...) construit TOUS les éléments d'un coup, même
+ceux hors écran. ListView.builder ne construit que les éléments visibles (à la
+demande) : pour 1000 livres, c'est bien plus rapide et économe en mémoire.
+
+**Q2.8.** Sans Expanded : "Vertical viewport was given unbounded height".
+Une Column donne une hauteur illimitée à ses enfants, et un ListView vertical
+veut prendre toute la hauteur disponible : il ne peut pas la calculer.
+Expanded lui donne l'espace restant de la Column.
+
+**Q2.9.** shrinkWrap: true fait prendre au ListView la taille de son contenu,
+et NeverScrollableScrollPhysics désactive son défilement propre. Utile pour
+une petite liste dans une page qui défile déjà (SingleChildScrollView). À
+éviter sur de longues listes car tous les éléments sont construits.

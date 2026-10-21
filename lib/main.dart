@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'screens/catalogue_screen.dart';
+import 'screens/parametres_screen.dart';
 
 void main() {
   runApp(const MaBiblioApp());
@@ -32,8 +34,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('MaBiblio')),
-      body: const Center(child: Text('Bienvenue dans MaBiblio')),
+      appBar: AppBar(
+        title: const Text('MaBiblio'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ParametresScreen(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      body: const CatalogueScreen(),
     );
   }
 }
